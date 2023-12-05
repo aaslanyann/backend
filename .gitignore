@@ -1,0 +1,44 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environment
+venv/
+
+# IDE files
+.vscode/
+.idea/
+
+# Editor-specific files
+*.swp
+*.swo
+*~
+
+# Environment variables
+.env
+
+# Compiled Python files
+*.pyc
+
+# Compiled C extension
+*.so
+
+# Database files
+db.sqlite
+
+# Logs
+*.log
+logs/
+
+# User-specific files
+sensitive_file.txt
+
+# Dependency directories
+env/
+lib/
+include/
+
+# Ignore local configuration files
+config.py

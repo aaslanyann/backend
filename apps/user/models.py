@@ -1,8 +1,12 @@
-from flask_sqlalchemy import SQLAlchemy
+from apps.extensions import db
 
-db = SQLAlchemy()
+
 
 class User(db.Model):
-    # User model definition
-    pass
+    __tablename__ = 'results'
+
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(80), unique=True, nullable=False)
+    age = db.Column(db.Integer, nullable=True)
+    page = db.Column(db.Integer, nullable=True)
 

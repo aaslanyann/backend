@@ -1,17 +1,9 @@
-from flask import jsonify
-from flask_restful import Resource
-from .models import User
+from flask import Blueprint
+from .controllers import Controller
 
-class UserListResource(Resource):
-    def get(self):
-        return jsonify({"message": "List of users"})
+user = Blueprint('user', __name__)
 
-    def post(self):
-        return jsonify({"message": "User added"})
 
-class UserResource(Resource):
-    def get(self, user_id):
-        return jsonify({"message": f"Details of user {user_id}"})
-
-    def delete(self, user_id):
-        return jsonify({"message": f"User {user_id} deleted"})
+user.route('', methods=['GET'])(Controller.index)
+user.route('example', methods=['GET'])(Controller.example)
+user.route('json-example', methods=['GET'])(Controller.json_example)

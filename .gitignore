@@ -41,6 +41,3 @@ sensitive_file.txt
 env/
 lib/
 include/
-
-# Ignore local configuration files
-config.py

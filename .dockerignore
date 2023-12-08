@@ -1,0 +1,11 @@
+.gitignore
+venv
+README.md
+Dockerfile
+
+#env files
+.env.dev
+.env.tst
+.env.example
+.env.tst.example
+.env.dev.example

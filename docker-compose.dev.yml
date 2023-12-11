@@ -1,0 +1,17 @@
+version: '3'
+
+
+services:
+  app:
+    build:
+      dockerfile: dockerfiles/Dockerfile.dev
+      context: .
+    image: neom_backend:1.0
+    container_name: neom_backend
+    command: python app.py
+    volumes:
+      - ./.env:/app/.env
+    ports:
+      - "8080:5000"
+
+

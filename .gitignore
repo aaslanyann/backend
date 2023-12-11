@@ -18,8 +18,7 @@ venv/
 
 # Environment variables
 .env
-.env.dev
-.env.tst
+
 
 # Compiled Python files
 *.pyc

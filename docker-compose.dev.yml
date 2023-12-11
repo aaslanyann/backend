@@ -13,5 +13,18 @@ services:
       - ./.env:/app/.env
     ports:
       - "8080:5000"
+    depends_on:
+      - db
+
+  db:
+    image: postgres:15.5-alpine
+    container_name: mypostgresql
+
+    env_file:
+      - .env
+
+
+
+
 
 

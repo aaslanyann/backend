@@ -1,6 +1,6 @@
 from apps.extensions import db
-from sqlalchemy import Enum
 import enum
+from werkzeug.security import generate_password_hash, check_password_hash
 
 
 class User(db.Model):
@@ -16,3 +16,14 @@ class User(db.Model):
     last_name = db.Column(db.String(50), nullable=False)
     position = db.Column(db.String(50))
     role = db.Column(db.Enum(UserRoleEnum), default='user', nullable=False)
+
+    def check_password(self, password):
+        return check_password_hash(self.password, password)
+
+    def __repr__(self):
+        return f"<User {self.username}>"
+
+    @classmethod
+    def get_user_by_email(cls, email):
+        return cls.query.filter_by(email=email).first()
+

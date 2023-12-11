@@ -36,4 +36,9 @@ class Controller:
         return jsonify({"error": "Invalid username or password"}), 400
 
 
-
+    @jwt_required(refresh=True)
+    def refresh_access_token(self):
+        identity = get_jwt_identity()
+        new_access_token = create_access_token(identity=identity)
+        new_refresh_token = create_refresh_token(identity=identity)
+        return jsonify({"access_token": new_access_token, "refresh_token": new_refresh_token})

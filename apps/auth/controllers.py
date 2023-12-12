@@ -1,5 +1,6 @@
 from flask import jsonify, request
 from ..user.models import User
+from datetime import datetime, timedelta
 
 from flask_jwt_extended import (
     create_access_token,
@@ -16,8 +17,9 @@ class Controller:
         user = User.get_user_by_email(email=data.get("email"))
 
         if user and (user.check_password(password=data.get("password"))):
-            access_token_ttl = 3600  # 1 hour
-            refresh_token_ttl = 3600 * 24  # 24 hour
+            now = datetime.now()
+            access_token_ttl = timedelta(hours=1)
+            refresh_token_ttl = timedelta(hours=24)
 
             access_token = create_access_token(identity=user.email, expires_delta=access_token_ttl)
             refresh_token = create_refresh_token(identity=user.email, expires_delta=refresh_token_ttl)
@@ -27,7 +29,7 @@ class Controller:
                     {
                         "message": "Logged In ",
                         "access_token": access_token,
-                        "refresh": refresh_token,
+                        "refresh_token": refresh_token,
                     }
                 ),
                 200,

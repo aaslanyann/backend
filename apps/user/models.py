@@ -1,6 +1,6 @@
 from apps.extensions import db
 import enum
-from werkzeug.security import generate_password_hash, check_password_hash
+from werkzeug.security import check_password_hash
 
 
 class User(db.Model):
@@ -16,6 +16,7 @@ class User(db.Model):
     last_name = db.Column(db.String(50), nullable=False)
     position = db.Column(db.String(50))
     role = db.Column(db.Enum(UserRoleEnum), default='user', nullable=False)
+    password = db.Column(db.Text())
 
     def check_password(self, password):
         return check_password_hash(self.password, password)

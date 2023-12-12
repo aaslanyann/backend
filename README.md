@@ -80,11 +80,6 @@ Before running the application, make sure you have the following installed:
    flask db upgrade
     ```
 
-
-
-
-
-
 ## Run With Docker
 
 ### Prerequisites
@@ -103,8 +98,14 @@ Before running the application with docker, make sure you have the following ins
    docker-compose -f docker-compose.dev.yml up   
    
    #prod
-   docker-compose -f docker-compose.prod.yml up
+   docker-compose -f -d docker-compose.prod.yml up
     ```
    
+### Creating a Migration
 
-   
+   ```     
+     docker exec neom_backend flask db upgrade
+   ```
+
+### Access to the app
+To access to the app, you can open http://localhost:8080/user/example

@@ -20,15 +20,15 @@ depends_on = None
 
 def upgrade():
     op.bulk_insert(User.__table__,[
-                   {'email': 'user1@example.com', 'first_name': 'John', 'last_name': 'Doe', 'position': 'Engineer',
+                   {'email': 'admin1@example.com', 'first_name': 'John', 'last_name': 'Doe', 'position': 'Engineer',
                     'role': 'admin', 'password': generate_password_hash('Pass_word1')},
-                   {'email': 'user2@example.com', 'first_name': 'Jane', 'last_name': 'Doe', 'position': 'Manager',
+                   {'email': 'admin2@example.com', 'first_name': 'Jane', 'last_name': 'Doe', 'position': 'Manager',
                     'role': 'admin', 'password': generate_password_hash('Pass_word!2')},
-                   {'email': 'user3@example.com', 'first_name': 'Alice', 'last_name': 'Smith', 'position': 'Developer',
+                   {'email': 'admin3@example.com', 'first_name': 'Alice', 'last_name': 'Smith', 'position': 'Developer',
                     'role': 'admin', 'password': generate_password_hash('!Pass_word3')},
-                   {'email': 'user4@example.com', 'first_name': 'Bob', 'last_name': 'Johnson', 'position': 'Designer',
+                   {'email': 'admin4@example.com', 'first_name': 'Bob', 'last_name': 'Johnson', 'position': 'Designer',
                     'role': 'admin', 'password': generate_password_hash('!!Pass_word4')},
-                   {'email': 'user5@example.com', 'first_name': 'Eve', 'last_name': 'Brown', 'position': 'Analyst',
+                   {'email': 'admin5@example.com', 'first_name': 'Eve', 'last_name': 'Brown', 'position': 'Analyst',
                     'role': 'admin', 'password': generate_password_hash('Pass__word5')}
                    ])
 

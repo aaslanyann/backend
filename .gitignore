@@ -26,9 +26,6 @@ venv/
 # Compiled C extension
 *.so
 
-# Database files
-db.sqlite
-
 # Logs
 *.log
 logs/

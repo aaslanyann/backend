@@ -13,6 +13,7 @@ def create_app():
     app.register_blueprint(user, url_prefix='/user/')
     app.register_blueprint(auth, url_prefix='/oauth2/')
 
+
     return app
 
 

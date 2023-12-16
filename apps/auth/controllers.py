@@ -13,27 +13,46 @@ from flask_jwt_extended import (
 class Controller:
     def get_access_token(self, ):
         """
-        Authenticate a user.
-        ---
-        parameters:
-        - in: body
-          name: body
-          description: Get access token
-          required: true
-          schema:
-            type: object
-            properties:
-              email:
-                type: string
-              password:
-                type: string
-        responses:
-          200:
-            description: Successfully authenticated. Returns access and refresh tokens.
-          400:
-            description: Invalid username or password.
-
-        """
+    Authenticate a user.
+    ---
+    parameters:
+    - in: body
+      name: body
+      description: Get access token
+      required: true
+      schema:
+        type: object
+        properties:
+          email:
+            type: string
+            example: user@example.com
+          password:
+            type: string
+            example: password123
+    responses:
+      200:
+        description: Successfully authenticated. Returns access and refresh tokens.
+        schema:
+          type: object
+          properties:
+            message:
+              type: string
+              example: Logged In
+            access_token:
+              type: string
+              example: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9...
+            refresh_token:
+              type: string
+              example: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9...
+      400:
+        description: Invalid username or password.
+        schema:
+          type: object
+          properties:
+            error:
+              type: string
+              example: Invalid username or password
+    """
 
         data = request.get_json()
 
@@ -64,24 +83,36 @@ class Controller:
     @jwt_required(refresh=True)
     def refresh_access_token(self):
         """
-        Refresh Access Token
-        ---
-        parameters:
-        - in: header
-          name: header
-          description: Get new access and refresh tokens
-          required: true
-          schema:
-            type: object
-            properties:
-              refresh_token:
+            Refresh Access Token
+            ---
+            parameters:
+              - name: Authorization
+                in: header
                 type: string
-        responses:
-          200:
-            description: Refresh Token Valid. Returns access and refresh tokens.
-          400:
-            description: Signature verification failed.
-       """
+                required: true
+                description: Bearer token received during authentication (e.g., 'Bearer JWT')
+                default: Bearer
+            responses:
+              200:
+                description: Refresh Token Valid. Returns access and refresh tokens.
+                schema:
+                  type: object
+                  properties:
+                    access_token:
+                      type: string
+                      example: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9...
+                    refresh_token:
+                      type: string
+                      example: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9...
+              422:
+                description: Signature verification failed.
+                schema:
+                  type: object
+                  properties:
+                    msg:
+                      type: string
+                      example: Signature verification failed
+            """
         identity = get_jwt_identity()
         new_access_token = create_access_token(identity=identity)
         new_refresh_token = create_refresh_token(identity=identity)

@@ -4,12 +4,16 @@ from apps.extensions import db
 from config import Config
 from flask_migrate import Migrate
 from flasgger import Swagger
+from apps.company.test_data import create_test_data
+
 
 
 
 app = create_app()
 swagger = Swagger(app)
 migrate = Migrate(app, db)
+create_test_data(app)
+
 
 
 if __name__ == '__main__':
